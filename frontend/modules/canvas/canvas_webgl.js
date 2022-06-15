@@ -1,12 +1,17 @@
 import './canvas.scss'
 
-function canvas(obj) {
-    const canvas = document.querySelector('.canvas-2d');
+function canvas_webgl(obj) {
+    const canvas = document.querySelector('.canvas-webgl');
     if (canvas) {
-        const ctx =  canvas.getContext('2d'),
+        const ctx =  canvas.getContext("webgl") || canvas.getContext("experimental-webgl"),
             item_width = 385,
             item_height = 280,
             gap = 20;
+
+        if (!ctx) {
+            alert("Ваш браузер не поддерживает WebGL");
+            return;
+        }
 
         setSizeCanvas({
             el: canvas,
@@ -17,12 +22,18 @@ function canvas(obj) {
             gap: gap,
         })
 
+
+        // покрасим в серый цвет фон
+        ctx.clearColor(0.5, 0.5, 0.5, 0.6);
+        ctx.clear(ctx.COLOR_BUFFER_BIT);
+
+
         let items_in_row = obj.items_per_row,
             cur_item = 0,
             x = gap,
             y = gap;
 
-        while(cur_item < obj.count) {
+        while(cur_item < obj.count && false) {
 
             drawItem({
                 ctx: ctx,
@@ -69,7 +80,7 @@ function canvas(obj) {
     }
 }
 
-export {canvas};
+export {canvas_webgl};
 
 function drawItem (obj) {
     const ctx = obj.ctx;
@@ -77,26 +88,26 @@ function drawItem (obj) {
     ctx.strokeStyle = '#000';
     ctx.strokeRect(obj.coords.x, obj.coords.y, obj.width, obj.height);
 
-    drawHead(obj);
-    drawUser({
-        ctx: obj.ctx,
-        user: obj.user,
-        no_text: false,
-        coords: {
-            x: obj.coords.x + 10,
-            y: obj.coords.y + 10,
-        }
-    });
-    drawMembers(obj);
-    drawToggle({
-        ctx: obj.ctx,
-        coords: {
-            x: obj.coords.x + 300,
-            y: obj.coords.y + 220,
-        },
-        width: 50,
-        height: 25
-    })
+    // drawHead(obj);
+    // drawUser({
+    //     ctx: obj.ctx,
+    //     user: obj.user,
+    //     no_text: false,
+    //     coords: {
+    //         x: obj.coords.x + 10,
+    //         y: obj.coords.y + 10,
+    //     }
+    // });
+    // drawMembers(obj);
+    // drawToggle({
+    //     ctx: obj.ctx,
+    //     coords: {
+    //         x: obj.coords.x + 300,
+    //         y: obj.coords.y + 220,
+    //     },
+    //     width: 50,
+    //     height: 25
+    // })
 }
 
 function drawHead (obj) {

@@ -1,6 +1,8 @@
 {% extends '../base.twig' %}
 
+{% block title %}Canvas 2D{% endblock %}
+
 {% block content %}
     {% include './frontend/modules/counter/counter.twig' %}
-    {% include './frontend/modules/canvas/canvas.twig' %}
+    {% include './frontend/modules/canvas/canvas.twig' with {class: 'canvas-2d'} %}
 {% endblock %}
