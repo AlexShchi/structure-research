@@ -1,0 +1,23 @@
+{% set items = 10000 %}
+{% set items_per_row = 100 %}
+{% set current = 1 %}
+
+<div class="schema">
+{% for item in 1..items  %}
+    {% if current == 1 %}
+        <div class="schema_row{% if loop.index == 1 %} is_active{% endif %}">
+    {% endif %}
+        {% include 'components/item.twig'  with {
+            index: loop.index
+        } %}
+    {% if current == items_per_row %}
+        </div>
+    {% endif %}
+
+    {% if current == items_per_row %}
+        {% set current = 1 %}
+    {% else %}
+        {% set current = current + 1 %}
+    {% endif %}
+{% endfor %}
+</div>

@@ -1,0 +1,41 @@
+<div class="item">
+    <div class="item_top">
+        <div class="item_top-left">
+            <a href="#" class="user_avatar">
+                <img src="https://www.fillmurray.com/50/50" alt="avatar" title="avatar">
+            </a>
+        </div>
+        <div class="item_top-right">
+            <div class="user_name"><b>Имя пользователя {{ index }}</b></div>
+            <div class="user_position">Отдел компании&nbsp;{{ index }} · Очень важный менеджер&nbsp;{{ index }}</div>
+        </div>
+    </div>
+    <div class="item_middle">
+        <div class="user_contacts">
+            <a href="mailto:user@start2play.ru">user@start2play.ru</a>
+            <a href="tel:+79105488924">+7 910 548-89-24</a>
+        </div>
+        <ul class="item_list">
+            {% set arr = ["Тестировщик","Хороший человек", "Люблю милицейские сериалы", "Меня трудно найти, легко потерять, трудно забыть"] %}
+            {% for i in arr %}
+            <li class="item_list-item">
+                <div class="item_list-item_icon">
+                    <img src="https://placehold.co/14x14" alt="icon" title="icon">
+                </div>
+                <div class="item_list-item_text">{{ i }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="item_bottom">
+        <a href="#">Перейти в профиль</a>
+    </div>
+    <div class="item_members">
+        {% for user in 1..6 %}
+            <a href="#" class="user_avatar">
+                <img src="https://placedog.net/24/24" alt="avatar {{ loop.index }}" title="avatar {{ loop.index }}">
+            </a>
+        {% endfor %}
+    </div>
+    <a href="#" class="js-next-level">Next level</a>
+</div>
