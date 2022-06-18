@@ -1,6 +1,41 @@
 import './canvas.scss'
 
-function canvas(obj) {
+const canvas = (options)=>{
+
+    const canvas =  document.querySelector('.canvas-2d');
+
+    if (!canvas) {
+        return;
+    }
+
+    return {
+        el: canvas,
+        // template: options.template || default_template(),
+        state:{},
+        methods: {
+            init: (obj)=> {
+                this.methods.setSize();
+            },
+            draw:{
+                item: (obj)=> {},
+                head: (obj)=> {},
+                user: (obj)=> {},
+                members: (obj)=> {},
+                toggle: (obj)=>{},
+                avatar: (obj)=>{},
+                arrow: (obj)=>{},
+                text: (obj)=> {}}
+            },
+            clear: (obj)=> {},
+            move: (obj)=> {},
+            setSize: (obj)=> {
+                this.el.setAttribute('width',this.el.width);
+                this.el.setAttribute('height',this.el.height);
+            },
+    }
+}
+
+function ccanvas(obj) {
     const canvas = document.querySelector('.canvas-2d');
     if (canvas) {
         const ctx = canvas.getContext('2d'),
